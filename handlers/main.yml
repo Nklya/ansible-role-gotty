@@ -1,0 +1,7 @@
+---
+# handlers file for gotty
+
+- name: restart gotty
+  service:
+    name: gotty
+    state: restarted

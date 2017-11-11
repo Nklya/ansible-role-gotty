@@ -1,0 +1,35 @@
+---
+# tasks file for gotty
+
+- name: Show hint
+  debug:
+    msg: "If you don't have an Internet connection, download bundle from {{ gotty_fullurl }} and put {{ gotty_file }} to /tmp directory"
+    verbosity: 2
+
+- name: Download Gotty artifact
+  get_url:
+    force: "{{ gotty_force_dwn }}"
+    url:  "{{ gotty_fullurl }}"
+    dest: "/tmp/{{ gotty_file }}"
+
+- name: Download and unarchive
+  unarchive:
+    dest: "{{ gotty_path }}"
+    src: "/tmp/{{ gotty_file }}"
+    remote_src: yes
+    creates: "{{ gotty_path }}/gotty"
+
+- name: Create Gotty config
+  template:
+    src: gotty.cfg.j2
+    dest: /etc/gotty.cfg
+  notify:
+    - restart gotty
+
+- name: Install Systemd files
+  include: inst_systemd.yml
+  when: ansible_service_mgr == 'systemd'
+
+- name: Install Init files
+  include: inst_init.yml
+  when: ansible_service_mgr == 'service' or ansible_service_mgr == 'upstart'

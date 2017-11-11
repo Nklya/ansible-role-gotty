@@ -1,0 +1,13 @@
+[Unit]
+Description = Gotty Service
+After = network.target
+
+[Service]
+ExecStart = /usr/local/bin/gotty --config /etc/gotty.cfg {{ gotty_cmd }}
+Environment = TERM=xterm-256color
+PrivateTmp = true
+TimeoutStopSec = 5
+Restart = always
+
+[Install]
+WantedBy = multi-user.target

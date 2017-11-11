@@ -1,0 +1,21 @@
+---
+# defaults file for gotty
+
+# Download urls
+gotty_version: '1.0.1'
+gotty_type: 'linux_amd64'
+gotty_baseurl: "https://github.com/yudai/gotty/releases/download/v"
+gotty_file: "gotty_{{ gotty_type }}.tar.gz"
+gotty_fullurl: "{{gotty_baseurl}}{{gotty_version}}/{{gotty_file}}"
+gotty_force_dwn: yes
+
+# Options
+gotty_path: '/usr/local/bin'
+gotty_logs: '/var/log'
+gotty_cmd: 'top'
+gotty_port: '80'
+gotty_permit_write: 'false'
+gotty_enable_tls: 'false'
+gotty_enable_basic_auth: 'false'
+gotty_basic_credential: 'test:test'
+gotty_enable_reconnect: 'true'

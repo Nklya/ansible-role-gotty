@@ -1,0 +1,34 @@
+// Listen at port 9000 by default
+port = "{{ gotty_port }}"
+
+// [bool] Permit clients to write to the TTY
+permit_write = {{ gotty_permit_write }}
+
+// Enable TSL/SSL by default
+enable_tls = {{ gotty_enable_tls }}
+
+// [string] Default TLS certificate file path
+// tls_crt_file = "/etc/gotty.crt"
+
+// [string] Default TLS key file path
+// tls_key_file = "/etc/gotty.key"
+
+// [bool] Enable basic authentication
+enable_basic_auth = {{ gotty_enable_basic_auth }}
+
+// [string] Default username and password of basic authentication (user:pass)
+//          To enable basic authentication, set `true` to `enable_basic_auth`
+credential = "{{ gotty_basic_credential }}"
+
+// [bool] Enable client side reconnection when connection closed
+enable_reconnect = {{ gotty_enable_reconnect }}
+
+// [int] Timeout seconds for waiting a client (0 to disable)
+timeout = 0
+
+// hterm preferences
+// Smaller font and a little bit bluer background color
+//preferences {
+//    font_size = 12
+//    background_color = "rgb(16, 16, 32)"
+//}

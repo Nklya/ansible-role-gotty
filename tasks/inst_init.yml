@@ -1,0 +1,14 @@
+---
+- name: Install Gotty init file
+  template:
+    src: gotty.init.j2
+    dest: /etc/init.d/gotty
+    mode: 0755
+  when: ansible_service_mgr == 'service' or ansible_service_mgr == 'upstart'
+
+- name: Start Gotty service
+  service:
+    name: gotty
+    state: started
+    enabled: yes
+  when: ansible_service_mgr == 'service' or ansible_service_mgr == 'upstart'
