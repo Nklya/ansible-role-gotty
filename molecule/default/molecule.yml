@@ -46,6 +46,9 @@ platforms:
 
 provisioner:
   name: ansible
+  config_options:
+    defaults:
+      gather_timeout: 30
   lint:
     name: ansible-lint
 scenario:
