@@ -1,3 +1,4 @@
+---
 galaxy_info:
   author: Nikolay Antsiferov
   description: Install and configure Gotty
@@ -8,17 +9,19 @@ galaxy_info:
   min_ansible_version: 2.0
 
   platforms:
-  - name: EL
-    versions:
-    - 6
-    - 7
-  - name: Debian
-    versions:
-    - jessie
-  - name: Ubuntu
-    versions:
-    - trusty
-    - xenial
+    - name: EL
+      versions:
+        - 6
+        - 7
+    - name: Debian
+      versions:
+        - wheezy
+        - jessie
+        - stretch
+    - name: Ubuntu
+      versions:
+        - trusty
+        - xenial
 
   galaxy_tags:
     - web

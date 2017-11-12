@@ -1,1 +1,4 @@
 .molecule
+.cache
+*.pyc
+.DS_Store

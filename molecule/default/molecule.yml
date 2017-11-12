@@ -5,19 +5,45 @@ driver:
   name: docker
 lint:
   name: yamllint
+  options:
+    config-file: molecule/default/yaml-lint.yml
+
 platforms:
-  - name: centos7
-    image: retr0h/centos7-systemd-ansible
-    image_version: latest
+  - name: centos-6
+    image: centos:6
+    command: '/sbin/init'
+    provision:
+      - yum install -y upstart initscripts && yum clean all
     privileged: True
-  - name: consul-ubuntu-16.04
-    image: solita/ubuntu-systemd
-    image_version: latest
+  - name: centos-7
+    image: centos:7
+    command: '/sbin/init'
     privileged: True
-  - name: consul-ubuntu-14.04
-    image: ubuntu-upstart
-    image_version: latest
+  - name: ubuntu-14.04
+    image: ubuntu:14.04
+    command: '/sbin/init'
     privileged: True
+  - name: ubuntu-16.04
+    image: ubuntu:16.04
+    command: '/sbin/init'
+    privileged: True
+  - name: debian-7
+    image: debian:wheezy-slim
+    command: '/sbin/init'
+    provision:
+      - apt-get install -y procps && apt-get clean
+    privileged: True
+  - name: debian-8
+    image: debian:jessie-slim
+    command: '/sbin/init'
+    privileged: True
+  - name: debian-9
+    image: debian:stretch-slim
+    command: '/sbin/init'
+    provision:
+      - apt install -y systemd && apt clean && ln -s /lib/systemd/systemd /sbin/init
+    privileged: True
+
 provisioner:
   name: ansible
   lint:
