@@ -9,12 +9,12 @@ lint:
     config-file: molecule/default/yaml-lint.yml
 
 platforms:
-  # - name: centos-6
-  #   image: centos:6
-  #   command: '/sbin/init'
-  #   provision:
-  #     - yum install -y upstart initscripts && yum clean all
-  #   privileged: True
+  - name: centos-6
+    image: centos:6
+    command: '/sbin/init'
+    provision:
+      - yum install -y upstart initscripts && yum clean all
+    privileged: True
   - name: centos-7
     image: centos:7
     command: '/sbin/init'
