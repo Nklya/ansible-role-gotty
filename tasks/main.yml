@@ -9,7 +9,7 @@
 - name: Download Gotty artifact
   get_url:
     force: "{{ gotty_force_dwn }}"
-    url:  "{{ gotty_fullurl }}"
+    url: "{{ gotty_fullurl }}"
     dest: "/tmp/{{ gotty_file }}"
 
 - name: Download and unarchive
@@ -32,4 +32,4 @@
 
 - name: Install Init files
   include: inst_init.yml
-  when: ansible_service_mgr == 'service' or ansible_service_mgr == 'upstart'
+  when: ansible_service_mgr != 'systemd'
