@@ -12,7 +12,7 @@ before_install:
 install:
   - virtualenv --python=$(which python2.7) .venv
   - source .venv/bin/activate
-  - pip install --no-deps -r tests/test-requirements.txt
+  - pip install molecule ansible docker
 script:
   - python --version
   - ansible --version
@@ -22,5 +22,5 @@ branches:
   only:
     - master
     - stable
-# notifications:
-#   webhooks: https://galaxy.ansible.com/api/v1/notifications/
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/
