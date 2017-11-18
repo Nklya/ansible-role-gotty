@@ -7,11 +7,7 @@ env:
   - MOLECULE_SCENARIO=ubuntu
 services:
   - docker
-before_install:
-  - sudo apt-get -qq update
 install:
-  - virtualenv --python=$(which python2.7) .venv
-  - source .venv/bin/activate
   - pip install molecule ansible docker
 script:
   - python --version
