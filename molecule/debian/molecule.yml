@@ -1,0 +1,45 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+lint:
+  name: yamllint
+  options:
+    config-file: molecule/default/yaml-lint.yml
+platforms:
+  - name: debian-7
+    image: debian:wheezy-slim
+    command: '/sbin/init'
+    provision:
+      - apt-get install -y procps && apt-get clean
+    privileged: True
+  - name: debian-8
+    image: debian:jessie-slim
+    command: '/sbin/init'
+    privileged: True
+  - name: debian-9
+    image: debian:stretch-slim
+    command: '/sbin/init'
+    provision:
+      - apt install -y systemd && apt clean && ln -s /lib/systemd/systemd /sbin/init
+    privileged: True
+provisioner:
+  name: ansible
+  playbooks:
+    create: ../default/create.yml
+    prepare: ../default/prepare.yml
+    converge: ../default/playbook.yml
+    destroy: ../default/destroy.yml
+  config_options:
+    defaults:
+      gather_timeout: 30
+  lint:
+    name: ansible-lint
+scenario:
+  name: debian
+verifier:
+  name: testinfra
+  directory: ../tests/
+  lint:
+    name: flake8
