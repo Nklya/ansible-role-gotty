@@ -1,0 +1,37 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+lint:
+  name: yamllint
+  options:
+    config-file: molecule/default/yaml-lint.yml
+platforms:
+  - name: ubuntu-14.04
+    image: ubuntu:14.04
+    command: '/sbin/init'
+    privileged: True
+  - name: ubuntu-16.04
+    image: ubuntu:16.04
+    command: '/sbin/init'
+    privileged: True
+provisioner:
+  name: ansible
+  playbooks:
+    create: ../default/create.yml
+    prepare: ../default/prepare.yml
+    converge: ../default/playbook.yml
+    destroy: ../default/destroy.yml
+  config_options:
+    defaults:
+      gather_timeout: 30
+  lint:
+    name: ansible-lint
+scenario:
+  name: ubuntu
+verifier:
+  name: testinfra
+  directory: ../tests/
+  lint:
+    name: flake8

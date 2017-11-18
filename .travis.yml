@@ -1,16 +1,26 @@
 ---
 sudo: required
 language: python
+env:
+  - MOLECULE_SCENARIO=centos
+  - MOLECULE_SCENARIO=debian
+  - MOLECULE_SCENARIO=ubuntu
 services:
   - docker
-
+before_install:
+  - sudo apt-get -qq update
 install:
-  - pip install molecule ansible docker
-
+  - virtualenv --python=$(which python2.7) .venv
+  - source .venv/bin/activate
+  - pip install --no-deps -r tests/test-requirements.txt
 script:
-  - molecule --version
+  - python --version
   - ansible --version
   - molecule --version
-  - molecule test
-notifications:
-  webhooks: https://galaxy.ansible.com/api/v1/notifications/
+  - molecule test --scenario-name ${MOLECULE_SCENARIO}
+branches:
+  only:
+    - master
+    - stable
+# notifications:
+#   webhooks: https://galaxy.ansible.com/api/v1/notifications/

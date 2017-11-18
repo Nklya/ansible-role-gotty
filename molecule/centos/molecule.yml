@@ -1,0 +1,39 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+lint:
+  name: yamllint
+  options:
+    config-file: molecule/default/yaml-lint.yml
+platforms:
+  - name: centos-6
+    image: centos:6
+    command: '/sbin/init'
+    provision:
+      - yum install -y upstart initscripts && yum clean all
+    privileged: True
+  - name: centos-7
+    image: centos:7
+    command: '/sbin/init'
+    privileged: True
+provisioner:
+  name: ansible
+  playbooks:
+    create: ../default/create.yml
+    prepare: ../default/prepare.yml
+    converge: ../default/playbook.yml
+    destroy: ../default/destroy.yml
+  config_options:
+    defaults:
+      gather_timeout: 30
+  lint:
+    name: ansible-lint
+scenario:
+  name: centos
+verifier:
+  name: testinfra
+  directory: ../tests/
+  lint:
+    name: flake8
