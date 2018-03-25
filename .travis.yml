@@ -8,15 +8,15 @@ env:
 services:
   - docker
 install:
-  - pip install molecule ansible docker
+  - pip install -r molecule/requirements.txt
 script:
   - python --version
   - ansible --version
   - molecule --version
   - molecule test --scenario-name ${MOLECULE_SCENARIO}
-branches:
-  only:
-    - master
-    - stable
+# branches:
+#   only:
+#     - master
+#     - stable
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
