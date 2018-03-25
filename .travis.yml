@@ -14,9 +14,8 @@ script:
   - ansible --version
   - molecule --version
   - molecule test --scenario-name ${MOLECULE_SCENARIO}
-# branches:
-#   only:
-#     - master
-#     - stable
+branches:
+  only:
+    - master
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
