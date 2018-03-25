@@ -8,7 +8,7 @@ env:
 services:
   - docker
 install:
-  - pip install molecule ansible docker
+  - pip install -r molecule/requirements.txt
 script:
   - python --version
   - ansible --version
@@ -17,6 +17,5 @@ script:
 branches:
   only:
     - master
-    - stable
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/

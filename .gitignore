@@ -1,4 +1,5 @@
 .molecule
 .cache
+.pytest_cache
 *.pyc
 .DS_Store
