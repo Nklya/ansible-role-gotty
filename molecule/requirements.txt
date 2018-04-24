@@ -1,4 +1,5 @@
-ansible>=2.4
+ansible==2.5.0
+# Limit ansible version as workaround for: https://github.com/philpep/testinfra/issues/305
 molecule>=2.6
 testinfra>=1.10
 # Limit docker lib version as workaround for: https://github.com/ansible/ansible/issues/35612

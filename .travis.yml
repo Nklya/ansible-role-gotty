@@ -13,6 +13,7 @@ script:
   - python --version
   - ansible --version
   - molecule --version
+  - py.test --version
   - molecule test --scenario-name ${MOLECULE_SCENARIO}
 branches:
   only:
