@@ -1,5 +1,5 @@
 # Ansible Role: Gotty
-[![Build Status](https://img.shields.io/travis/cndies/ansible-role-gotty.svg)](https://travis-ci.org/cndies/ansible-role-gotty)
+[![Build Status](https://img.shields.io/travis/cndies/ansible-role-gotty.svg)](https://travis-ci.com/cndies/ansible-role-gotty)
 [![Galaxy](https://img.shields.io/badge/galaxy-cndies.gotty-blue.svg)](https://galaxy.ansible.com/cndies/gotty)
 [![GitHub Tags](https://img.shields.io/github/tag/cndies/ansible-role-gotty.svg)](https://github.com/cndies/ansible-role-gotty)
 [![GitHub Stars](https://img.shields.io/github/stars/cndies/ansible-role-gotty.svg)](https://github.com/cndies/ansible-role-gotty)
